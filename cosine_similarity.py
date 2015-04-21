@@ -6,7 +6,7 @@ def cosine_similarity(vector_doc1,docs_dataset) :
     """
     Checks the cosine similarity betweeen all the documents in the dataset to the given document.
         Parameters : vector_doc1 - The input document to which the similar documents need to be recommended.
-                     docs_dataset - The documents dataset within which we need to recommend the the
+                     docs_dataset - The documents dataset dictionary within which we need to recommend the the
                                    most 5 similar documents to the given document.
     """
     RANK  = 5
@@ -35,6 +35,8 @@ def cosine_similarity(vector_doc1,docs_dataset) :
                 rank_q.put(sum, doc)
             else:
                 rank_q.put(smallest_elem)
+
+    return rank_q
 
 """
 def get_similar_doc(sum, doc, queue_q):

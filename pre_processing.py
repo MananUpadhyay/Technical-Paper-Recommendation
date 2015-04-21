@@ -16,8 +16,8 @@ def remove_punc(s):
 	strp = strp.translate(tr1)
 	return strp
 
-def create_tf_for_doc():
-	path = sys.argv[1]
+def create_tf_for_doc(path):
+	# path = sys.argv[1]
 	idf = {}
 	tf = {}
 	count  = 0
@@ -80,7 +80,7 @@ def idf_weighting(idf,N):
 
 
 def main():
-	(tf,idf,N) = create_tf_for_doc() # N ----> count of files in dataset
+	(tf,idf,N) = create_tf_for_doc(folderPath) # N ----> count of files in dataset
 	#print(tf)
 	#print(idf)
 	idf = idf_check(tf,idf)

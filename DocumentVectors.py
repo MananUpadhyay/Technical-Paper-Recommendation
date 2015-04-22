@@ -3,9 +3,9 @@ import math,pre_processing as pre
 def getPreProcData(folderPath):
     # Get dictionaries for TF-IDF;
     (tf,idf,N) = pre.create_tf_for_doc(folderPath)
-    idf = idf_check(tf,idf)
-    wtd = log_freq_weighting(tf)
-    idfw = idf_weighting(idf,N)
+    idf = pre.idf_check(tf,idf)
+    wtd = pre.log_freq_weighting(tf)
+    idfw = pre.idf_weighting(idf,N)
 
     return wtd,idfw
 
@@ -33,8 +33,8 @@ def createVectors(tfDict , idfDict):
         # store in the vectorDict;
         vectorDict[doc] = normalizedVector
 
-        if(len(vectorDict) != len(tfDict)):
-            print("Error in createVectors: dictionary size mismatch")
+        # if(len(vectorDict) != len(tfDict)):
+        #     print("Error in createVectors: dictionary size mismatch")
 
     return vectorDict
 

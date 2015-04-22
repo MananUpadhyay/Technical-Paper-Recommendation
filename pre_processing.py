@@ -7,8 +7,7 @@ import sys
 
 
 def remove_punc(s):
-
-	punc=(",./;'?$!#()={}:<>~\"0123456789")
+	punc=(",./;'?$!#()={}:<>~\"0123456789[]")
 	otherpunc = ("-")
 	tr = {ord(c): None for c in punc}
 	tr1 = {ord(c): " " for c in otherpunc}
@@ -29,20 +28,21 @@ def create_tf_for_doc(path):
 		fp = open(fpath,'r',errors = 'ignore')
 		for lines in fp:
 			#print(lines)
-			line=lines.strip("\n")
-			line=line.strip(" ")
-			line=remove_punc(line)
-			#print(line)
-			s1=line.split(" ")
-			for i in range(len(s1)):
-				if not (s1[i] == ""):
-					s = s1[i].lower()
-					if(s not in idf):
-						idf[s] = 0
-					if(s not in tf[file]):
-						tf[file][s] = 1
-					else:
-						tf[file][s] = tf[file][s] + 1
+			if lines != " " or lines != "\n":
+				line=lines.strip("\n")
+				line=line.strip(" ")
+				line=remove_punc(line)
+				#print(line)
+				s1=line.split(" ")
+				for i in range(len(s1)):
+					if not (s1[i] == ""):
+						s = s1[i].lower()
+						if(s not in idf):
+							idf[s] = 0
+						if(s not in tf[file]):
+							tf[file][s] = 1
+						else:
+							tf[file][s] = tf[file][s] + 1
 		
 
 	return (tf,idf,count)
@@ -79,7 +79,8 @@ def idf_weighting(idf,N):
 
 
 
-def main():
+if __name__ == '__main__':
+	folderPath = sys.argv[1]
 	(tf,idf,N) = create_tf_for_doc(folderPath) # N ----> count of files in dataset
 	#print(tf)
 	#print(idf)
@@ -88,9 +89,7 @@ def main():
 	#print(idf)
 	wtd = log_freq_weighting(tf)
 	#print("-----------------------------------------------------------------------")
-	print(wtd)
+	# print(wtd)
 	idfw = idf_weighting(idf,N)
-	print("-----------------------------------------------------------------------")
-	print(idfw)
-
-main()
+	# print("-----------------------------------------------------------------------")
+	# print(idfw)

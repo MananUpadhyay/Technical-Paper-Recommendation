@@ -9,6 +9,7 @@ def cosine_similarity(vector_doc1,docs_dataset) :
                      docs_dataset - The documents dataset dictionary within which we need to recommend the the
                                    most 5 similar documents to the given document.
     """
+
     RANK  = 5
 
     # This Priority Queue maintains the rank of the top ranked  similar documents.
@@ -21,20 +22,41 @@ def cosine_similarity(vector_doc1,docs_dataset) :
     max_score = 0
     for doc in docs_dataset.keys():
         doc_dict = docs_dataset[doc];
-        sum = 0
+        sumi = 0.0
         for words_doc1 in vector_doc1:
             if words_doc1 in doc_dict:
-                dot_product = vector_doc1[words_doc1] * doc_dict[words_doc1]
-                sum = sum + dot_product
+                dot_product = float(vector_doc1[words_doc1]) * float(doc_dict[words_doc1])
+                sumi = sumi + dot_product
         #get_similar_doc(sum,doc, rank_q)
 
         # Maintain a rank queue with the best 5 documents rank related to the given document
-        if (not rank_q.empty()):
+        # if (not rank_q.empty()):
+        #     smallest_elem = rank_q.get()
+        #     if (sumi > smallest_elem[0]):
+        #         rank_q.put((sumi, doc))
+        #     else:
+        #         rank_q.put(smallest_elem)
+        # else :
+        #     rank_q.put((sumi,doc))
+        # print("-----> " + str(doc) + " " + str(sumi))
+
+        
+
+
+        if(rank_q.qsize() < RANK):
+            rank_q.put((sumi,doc))
+        else:
             smallest_elem = rank_q.get()
-            if (sum > smallest_elem[0]):
-                rank_q.put(sum, doc)
-            else:
+            if(sumi < smallest_elem[0]):
                 rank_q.put(smallest_elem)
+            else:
+                rank_q.put((sumi,doc))
+
+
+
+    # while(not rank_q.empty()):
+    #     print("in rank Q")
+    #     print(rank_q.get())
 
     return rank_q
 

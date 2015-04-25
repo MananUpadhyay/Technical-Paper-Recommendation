@@ -22,6 +22,6 @@ if __name__ == '__main__':
 
 	seedVector = docVectors[fileToRecommend]
 
-	resultQueue = csim.cosine_similarity(seedVector,docVectors)
+	resultQueue = csim.cosine_similarity(fileToRecommend,seedVector,docVectors)
 	writeOutput(resultQueue)
 

@@ -10,6 +10,7 @@ def getPreProcData(folderPath):
     return wtd,idfw
 
 def createVectors(tfDict , idfDict):
+    print("Creating document vectors...")
     vectorDict = {}
 
     for doc in tfDict:
@@ -18,7 +19,7 @@ def createVectors(tfDict , idfDict):
         vector = {}
         for wrd in docTermFreqDict:
             if wrd in idfDict.keys():
-                vector[wrd] = float(docTermFreqDict[wrd] * idfDict[wrd])
+                vector[wrd] = (float(docTermFreqDict[wrd]) * float(idfDict[wrd]))
 
         # normalize vector
         normalizationFactor = 0

@@ -3,9 +3,14 @@ import DocumentVectors as dvec
 import cosine_similarity as csim
 
 def writeOutput(result):
+	#Comment this line for Metrics;
 	print("\n" + "RESULTS ----->" + "\n")
 	while(not result.empty()):
-		print(result.get())
+		# print(result.get())
+		temp = result.get()
+		simScore = temp[0]
+		fileName = temp[1]
+		print("FileName: " + fileName + " " + "Score: " + str(simScore))
 
 if __name__ == '__main__':
 	dataPath = sys.argv[1]
@@ -17,6 +22,7 @@ if __name__ == '__main__':
 	reComputeTfIdfFlag = False
 	
 	fileToRecommend = seedDocument.split("/").pop()
+	#Comment this line for Metrics;
 	print("\nSeed File: " +fileToRecommend + "\n")
 
 	resultQueue = queue.PriorityQueue()
@@ -36,10 +42,12 @@ if __name__ == '__main__':
 		iFile.close()
 		reComputeTfIdfFlag = True
 	
+	#Comment this line for Metrics;
 	if( reComputeTfIdfFlag ):
 		print("Computing TF-IDF scores...")
 
 	if(not reComputeTfIdfFlag):
+		#Comment this line for Metrics;
 		print("Computing TF-IDF scores...")
 		tf,idf = dvec.getPreProcData(dataPath)
 		

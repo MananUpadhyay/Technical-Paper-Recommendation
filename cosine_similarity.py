@@ -11,6 +11,8 @@ def cosine_similarity(fileName,vector_doc1,docs_dataset,rank) :
                                    most 5 similar documents to the given document.
                      rank - the number of similar documents required in the output.
     """
+
+    #Comment this line for Metrics;
     print("Finding similar doucments...")
     RANK  = rank
 

@@ -10,6 +10,7 @@ def getPreProcData(folderPath):
     return wtd,idfw
 
 def createVectors(tfDict , idfDict):
+    #Comment this line for Metrics;
     print("Creating document vectors...")
     vectorDict = {}
 

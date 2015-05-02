@@ -68,8 +68,8 @@ if __name__ == '__main__':
     seedVector = docVectors[fileToRecommend]
 
     #Recompute  wieghts for input vector to perform semantic analysis
-    wn.term_re_weighting(seedVector)
-    wn.term_expansion(seedVector)
+    seedVector = wn.term_re_weighting(seedVector)
+    seedVector = wn.term_expansion(seedVector)
 
     resultQueue = csim.cosine_similarity(fileToRecommend,seedVector,docVectors,rank)
     writeOutput(resultQueue)

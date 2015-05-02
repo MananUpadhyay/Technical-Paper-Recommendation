@@ -13,7 +13,7 @@ def term_re_weighting(vector_seedDoc) :
             if words != words2 :
                 if words.path_similarity(words2) > 0.8 :
                    vector_seedDoc[words] += vector_seedDoc[words] + ( vector_seedDoc[words2] * words.path_similarity(words2) )
-
+    return vector_seedDoc
 
 
 def term_expansion (vector_seedDoc) :
@@ -50,3 +50,5 @@ def term_expansion (vector_seedDoc) :
 
     #Recomputing the weights for each term
     term_re_weighting(vector_seedDoc)
+
+    return vector_seedDoc

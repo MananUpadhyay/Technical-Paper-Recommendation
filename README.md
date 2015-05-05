@@ -3,9 +3,11 @@
 
 **Team:**
 
-Harsh Shah
-Manan Upadhyay
-Shivani Shah
+1. Harsh Shah
+
+2. Manan Upadhyay
+
+3. Shivani Shah
 
 -----------------------------------------------------------------
 
@@ -38,6 +40,4 @@ Run the following command on the prompt:
     
    $ python3 MainRecom.py <path_dataset_directory> <path_to_seed_document> K
 
-    K = number of recommendations required.
-
-
+where K = number of recommendations required.
